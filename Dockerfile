@@ -13,7 +13,7 @@ FROM adoptopenjdk/openjdk11:jdk-11.0.6_10-alpine-slim
 # jig
 # aws s3 sync build/jig XXX
 
-RUN apk --update add \
+RUN apk --no-cache add \
   git curl graphviz font-noto python groff
 
 RUN GRADLE_SHA256="9d94e6e4a28ad328072ef6e56bce79a810494ae756751fdcedffdeaf27c093b1" \
@@ -22,7 +22,8 @@ RUN GRADLE_SHA256="9d94e6e4a28ad328072ef6e56bce79a810494ae756751fdcedffdeaf27c09
   && unzip -q /tmp/gradle.bin.zip -d /usr/local/share \
   && ln -sf /usr/local/share/gradle-6.1.1/bin/gradle /usr/bin/gradle \
   && mkdir /usr/local/share/jig \
-  && curl -LfsS https://github.com/dddjava/jig/releases/latest/download/jig-cli.jar -o /usr/local/share/jig/jig-cli.jar
+  && curl -LfsS https://github.com/dddjava/jig/releases/latest/download/jig-cli.jar -o /usr/local/share/jig/jig-cli.jar \
+  && rm /tmp/gradle.bin.zip
 
 RUN curl https://bootstrap.pypa.io/get-pip.py | python \
   && pip install awscli
