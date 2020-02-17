@@ -14,7 +14,7 @@ FROM adoptopenjdk/openjdk11:jdk-11.0.6_10-alpine-slim
 # aws s3 sync build/jig XXX
 
 RUN apk --no-cache add \
-  git curl graphviz font-noto python groff py-pip
+  git openssh curl graphviz font-noto python groff py-pip
 
 RUN GRADLE_SHA256="9d94e6e4a28ad328072ef6e56bce79a810494ae756751fdcedffdeaf27c093b1" \
   && curl -LfsS https://services.gradle.org/distributions/gradle-6.1.1-bin.zip -o /tmp/gradle.bin.zip \
