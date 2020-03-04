@@ -16,11 +16,11 @@ FROM adoptopenjdk/openjdk11:jdk-11.0.6_10-alpine-slim
 RUN apk --no-cache add \
   git openssh curl graphviz font-noto python groff py-pip
 
-RUN GRADLE_SHA256="9d94e6e4a28ad328072ef6e56bce79a810494ae756751fdcedffdeaf27c093b1" \
-  && curl -LfsS https://services.gradle.org/distributions/gradle-6.1.1-bin.zip -o /tmp/gradle.bin.zip \
+RUN GRADLE_SHA256="0f6ba231b986276d8221d7a870b4d98e0df76e6daf1f42e7c0baec5032fb7d17" \
+  && curl -LfsS https://services.gradle.org/distributions/gradle-6.2.2-bin.zip -o /tmp/gradle.bin.zip \
   && echo "${GRADLE_SHA256} */tmp/gradle.bin.zip" |  sha256sum -c - \
   && unzip -q /tmp/gradle.bin.zip -d /usr/local/share \
-  && ln -sf /usr/local/share/gradle-6.1.1/bin/gradle /usr/bin/gradle \
+  && ln -sf /usr/local/share/gradle-6.2.2/bin/gradle /usr/bin/gradle \
   && mkdir /usr/local/share/jig \
   && curl -LfsS https://github.com/dddjava/jig/releases/latest/download/jig-cli.jar -o /usr/local/share/jig/jig-cli.jar \
   && curl https://bootstrap.pypa.io/get-pip.py | python \
